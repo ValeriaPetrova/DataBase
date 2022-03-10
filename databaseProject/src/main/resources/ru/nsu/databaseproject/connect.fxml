@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="connectPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="432.0"
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="ru.nsu.databaseproject.ConnectController">
+    <children>
+        <Button fx:id="courseServerButton" layoutX="153.0" layoutY="57.0" mnemonicParsing="false" onAction="#connectToCourseServer" text="Сервер курса" />
+        <Button fx:id="myServerButton" layoutX="148.0" layoutY="101.0" mnemonicParsing="false" onAction="#connectToMyServer" text="Другой сервер" />
+        <TextField fx:id="loginField" alignment="CENTER" layoutX="117.0" layoutY="152.0" promptText="Логин" />
+        <TextField fx:id="passField" alignment="CENTER" layoutX="116.0" layoutY="200.0" promptText="Пароль" />
+        <TextField fx:id="ipField" alignment="CENTER" layoutX="117.0" layoutY="246.0" promptText="IP" />
+        <Button fx:id="registratiomButton" layoutX="131.0" layoutY="332.0" mnemonicParsing="false" onAction="#registrate" text="Зарегистрироваться" />
+        <TextArea fx:id="infoArea" layoutX="65.0" layoutY="381.0" prefHeight="72.0" prefWidth="292.0" />
+        <Button fx:id="initUsersButton" layoutX="113.0" layoutY="290.0" mnemonicParsing="false" onAction="#initUsers" text="Добавить пользователей" />
+    </children>
+
+</AnchorPane>
