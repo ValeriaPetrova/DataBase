@@ -65,7 +65,7 @@ public class PatientRequests {
     }
 
     public List<PatientEntity> getPatients() {
-        String sqlGetPatients = "SELECT * from pharmacyAdmin.patient_table ";
+        String sqlGetPatients = "SELECT * FROM pharmacyAdmin.patient_table ";
         List<PatientEntity> patients= new LinkedList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlGetPatients);
