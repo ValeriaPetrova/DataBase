@@ -4,7 +4,6 @@ module ru.nsu.databaseproject {
     requires java.sql;
     requires lombok;
 
-
     opens ru.nsu.databaseproject to javafx.fxml;
     exports ru.nsu.databaseproject;
 }

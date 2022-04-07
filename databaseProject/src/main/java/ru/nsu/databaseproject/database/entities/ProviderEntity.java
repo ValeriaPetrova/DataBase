@@ -1,9 +1,10 @@
-package ru.nsu.databaseproject.models.entities;
+package ru.nsu.databaseproject.database.entities;
 
 import lombok.Getter;
 import lombok.Setter;
 
 public class ProviderEntity {
+    @Getter @Setter
     private Integer providerId;
     @Getter @Setter
     private String address;

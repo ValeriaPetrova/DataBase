@@ -1,7 +1,5 @@
 package ru.nsu.databaseproject.database;
 
-import lombok.Getter;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +8,6 @@ import java.util.Properties;
 
 public class DBInit {
     private static DBInit instance;
-    @Getter
     private static Connection connection;
     private DBRequests dbRequests;
     private String url;
@@ -233,7 +230,7 @@ public class DBInit {
     }
 
     private void setData() {
-        
+
     }
 
 }
