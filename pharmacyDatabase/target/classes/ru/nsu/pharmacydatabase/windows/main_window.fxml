@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
+            prefWidth="400.0" style="-fx-background-color: #434343;" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllerrs.MainController">
+
+    <ListView fx:id="tableListView" layoutX="9.0" layoutY="6.0" prefHeight="627.0" prefWidth="385.0"/>
+
+    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#createButtonTapped" prefHeight="62.0"
+            prefWidth="400.0" style="-fx-background-color: #72c81e;" text="Создать Базу Данных" textFill="WHITE"
+            AnchorPane.bottomAnchor="0" />
+</AnchorPane>

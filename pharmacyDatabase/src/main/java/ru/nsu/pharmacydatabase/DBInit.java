@@ -1,26 +1,81 @@
 package ru.nsu.pharmacydatabase;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DBInit {
-    private static Connection connection = null;
+    private static final String[] tableNamesArray = {
+                    "Doctor.sql",
+                    "Exam.sql",
+                    "Making_an_order.sql",
+                    "Medicament.sql",
+                    "Medicament_type.sql",
+                    "Order_.sql",
+                    "Patient.sql",
+                    "Pharmacy_employee.sql",
+                    "Preparation_technology.sql",
+                    "Prescription.sql",
+                    "Provider.sql",
+                    "Request.sql",
+                    "Request_structure.sql",
+                    "Storage.sql"
+            };
+
+    private final Connection connection;
+    private final List<String> tablesName;
 
     public DBInit(Connection connection) {
         this.connection = connection;
+        tablesName = new LinkedList<>();
+        tablesName.addAll(Arrays.asList(tableNamesArray));
     }
 
-    public void init() throws SQLException, UnsupportedEncodingException {
+    public void clear() {
         dropTables();
-        System.out.println("..creating table..");
         dropSequences();
-        createTables();
+    }
+
+    public void init() throws SQLException {
         System.out.println("..creating table..");
+        createTables();
+        System.out.println("..creating sequences..");
         createSequences();
         insertInfo();
         System.out.println("..adding base information..");
         System.out.println("-----database successfully created-----");
+    }
+
+    public static String getIdFrom(String item) {
+        return getSubstring(" ID=", "ID=", item);
+    }
+
+    public static String getSubstring(String start1, String start2, String item) {
+        String start = start1;
+        int substringStartIndex = item.indexOf(start);
+        if(substringStartIndex < 0) {
+            start = start2;
+            substringStartIndex = item.indexOf(start);
+        }
+        int endIndex = item.indexOf(',', substringStartIndex);
+        if(endIndex < 0) {
+            endIndex = item.indexOf('}', substringStartIndex);
+        }
+        return item.substring(substringStartIndex + start.length(), endIndex);
+    }
+
+    private void execute(List<String> queries) {
+        for (String query: queries) {
+            try {
+                connection.executeQuery(query);
+            } catch (SQLIntegrityConstraintViolationException ignored) {
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void dropTables() {
@@ -690,5 +745,56 @@ public class DBInit {
         }
     }
 
-}
+    public void updateProvider(int id, String provider_name, String provider_address, String products) {
+        String sql = "UPDATE provider SET " +
+                "provider_name = '" + provider_name + "', provider_address = '" + provider_address + "', products='" + products + "' " +
+                "WHERE provider_id = "+ id;
+        List<String> provider = new LinkedList<>();
+        provider.add(sql);
+        connection.insert(provider);
+        System.out.println("UPDATE provider");
+    }
 
+    public void updateRequest(int id, int providerId) {
+        String sql = "UPDATE request SET " +
+                "provider_id = " + providerId +
+                " WHERE request_id = "+ id;
+        List<String> request = new LinkedList<>();
+        request.add(sql);
+        connection.insert(request);
+        System.out.println("UPDATE request");
+    }
+
+    public void updateMedicamentType(int id, String typeName) {
+        String sql = "UPDATE request SET " +
+                "type_name = '" + typeName + "' " +
+                " WHERE medicament_type_id = "+ id;
+        List<String> medicamentType = new LinkedList<>();
+        medicamentType.add(sql);
+        connection.insert(medicamentType);
+        System.out.println("UPDATE medType");
+    }
+
+    public void updatePatient(int id, String name, String surname, String birthDate, String phoneNumber, String address, String regDate) {
+        birthDate = "to_date('"+ birthDate + "', 'DD-MM-YYYY')";
+        regDate = "to_date('"+ regDate + "', 'DD-MM-YYYY')";
+        String sql = "UPDATE provider SET " +
+                "patient_firstname = '" + name + "', patient_surname = '" + surname + "', patient_birthdate=" + birthDate + ", patient_phone_number='" + phoneNumber + "', patient_address='" + address + "', registration_date="  + regDate +
+                " WHERE patient_id = " + id;
+        List<String> patient = new LinkedList<>();
+        patient.add(sql);
+        connection.insert(patient);
+        System.out.println("UPDATE patient");
+    }
+
+    public void updateDoctor(int id, String name, String surname) {
+        String sql = "UPDATE provider SET " +
+                "doctor_firstname = '" + name + "', doctor_surname = '" + surname +
+                " WHERE doctor_id = " + id;
+        List<String> doctor = new LinkedList<>();
+        doctor.add(sql);
+        connection.insert(doctor);
+        System.out.println("UPDATE doctor");
+    }
+
+}

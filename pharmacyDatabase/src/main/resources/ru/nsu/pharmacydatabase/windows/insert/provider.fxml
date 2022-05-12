@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #434343;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllerrs.insert.ProviderInsertController">
+    <children>
+        <BorderPane layoutX="102.0" layoutY="32.0" prefHeight="237.0" prefWidth="246.0">
+            <center>
+                <TextField fx:id="nameField" prefHeight="54.0" prefWidth="246.0" promptText="Введите название книги" BorderPane.alignment="CENTER" />
+            </center>
+            <top>
+                <Label prefHeight="21.0" prefWidth="143.0" text="Добавление новой книги" textFill="WHITE" BorderPane.alignment="CENTER" />
+            </top>
+            <bottom>
+                <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertButtonTapped" prefHeight="29.0" prefWidth="253.0" style="-fx-background-color: #72c81e;" text="Добавить" textFill="WHITE" BorderPane.alignment="CENTER" />
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>
