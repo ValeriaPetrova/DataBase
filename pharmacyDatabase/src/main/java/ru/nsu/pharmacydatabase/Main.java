@@ -5,11 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ru.nsu.pharmacydatabase.controllerrs.EntranceController;
+import ru.nsu.pharmacydatabase.controllers.base.EntranceController;
+import ru.nsu.pharmacydatabase.utils.Connection;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.Locale;
 
 public class Main extends Application {
@@ -20,7 +20,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException, SQLException, ClassNotFoundException {
+    public void start(Stage stage) throws IOException {
         stage.setTitle("PHARMACY");
         Locale.setDefault(new Locale("ru", "RU"));
         InputStream inputStream = getClass().getResourceAsStream(EntranceController.LOGIN_WINDOW_FXML);

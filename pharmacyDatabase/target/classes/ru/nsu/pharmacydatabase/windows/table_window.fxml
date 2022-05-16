@@ -3,18 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="removeButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #434343;"
-            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ru.nsu.pharmacydatabase.controllerrs.TableController">
-    <Button fx:id="insertButton" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false"
-            onAction="#insertButtonTapped" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: #72c81e;"
-            text="Добавить" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0"/>
-    <TableView fx:id="tableView" layoutX="14.0" layoutY="69.0" prefHeight="474.0" prefWidth="825.0">
+<AnchorPane fx:id="removeButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #226078;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.select.TableController">
+    <Button fx:id="insertButton" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#insertButtonTapped" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: rgb(98,177,208);" text="Добавить" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+    <TableView fx:id="tableView" layoutX="14.0" layoutY="69.0" opacity="0.75" prefHeight="474.0" prefWidth="825.0">
     </TableView>
-    <Button layoutX="685.0" layoutY="14.0" mnemonicParsing="false" onAction="#removeButtonTapped" prefHeight="31.0"
-            prefWidth="151.0" style="-fx-background-color: #72c81e;" text="Удалить" textFill="WHITE"/>
-    <Button fx:id="updateButton" layoutX="350.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateButtonTapped"
-            prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: #72c81e;" text="Обновить"
-            textFill="WHITE"/>
+    <Button layoutX="685.0" layoutY="14.0" mnemonicParsing="false" onAction="#removeButtonTapped" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: rgb(98,177,208);" text="Удалить" textFill="WHITE" />
+    <Button fx:id="updateButton" layoutX="350.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateButtonTapped" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: rgb(98,177,208);" text="Обновить" textFill="WHITE" />
 </AnchorPane>

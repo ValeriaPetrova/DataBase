@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-            prefWidth="400.0" style="-fx-background-color: #434343;" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllerrs.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #226078;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.base.MainController">
 
-    <ListView fx:id="tableListView" layoutX="9.0" layoutY="6.0" prefHeight="627.0" prefWidth="385.0"/>
+    <ListView fx:id="tableListView" editable="true" layoutX="29.0" layoutY="6.0" opacity="0.75" prefHeight="516.0" prefWidth="741.0">
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets></ListView>
 
-    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#createButtonTapped" prefHeight="62.0"
-            prefWidth="400.0" style="-fx-background-color: #72c81e;" text="Создать Базу Данных" textFill="WHITE"
-            AnchorPane.bottomAnchor="0" />
+    <Button contentDisplay="CENTER" layoutX="207.0" layoutY="523.0" mnemonicParsing="false" onAction="#createButtonTapped" prefHeight="62.0" prefWidth="386.0" style="-fx-background-color: rgb(98,177,208);" text="Создать Базу Данных" textFill="WHITE" AnchorPane.bottomAnchor="14.600000000000023">
+      <font>
+         <Font size="19.0" />
+      </font></Button>
 </AnchorPane>

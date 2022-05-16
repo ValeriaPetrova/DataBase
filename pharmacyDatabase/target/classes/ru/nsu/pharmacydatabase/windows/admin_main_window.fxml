@@ -4,10 +4,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #434343;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.roles.AdminMain">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #226078;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.utils.AdminMain">
     <children>
-        <Label layoutX="218.0" layoutY="14.0" text="Вы вошли как администратор" textAlignment="CENTER" textFill="WHITE" />
-        <Button fx:id="button" defaultButton="true" layoutX="185.0" layoutY="138.0" mnemonicParsing="false" onAction="#getAll" style="-fx-background-color: #72c81e;" text="Перейти к базе данных" textFill="WHITE">
+        <Label layoutX="256.0" layoutY="213.0" text="Вы вошли как администратор" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+        <Button fx:id="button" defaultButton="true" layoutX="284.0" layoutY="300.0" mnemonicParsing="false" onAction="#getAll" style="-fx-background-color: rgb(98,177,208);" text="Перейти к базе данных" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>

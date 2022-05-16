@@ -4,18 +4,18 @@ public enum Requests {
     r1(new Request(
             "1. Получить сведения о покупателях, которые не пришли забрать \n" +
                     "свой заказ в назначенное им время и общее их число.",
-            "/ru/nsu/pharmacydatabase/windows/requests/r1.fxml")),
+            "/ru/nsu/pharmacydatabase/windows/requests/r1.fxml")),//ReceiveController
     r2(new Request(
             "2. Получить перечень и общее число покупателей, которые ждут прибытия\n" +
                     "на склад нужных им медикаментов в целом и по указанной категории медикаментов.",
-            "/ru/nsu/pharmacydatabase/windows/requests/r2.fxml")),
+            "/ru/nsu/pharmacydatabase/windows/requests/r2.fxml")),// PatientsWaitingToOrder
     r3(new Request(
             "3. Получить перечень десяти наиболее часто используемых медикаментов\n" +
                     "в целом и указанной категории медикаментов. ",
-            "/ru/nsu/pharmacydatabase/windows/requests/r3.fxml")),
+            "/ru/nsu/pharmacydatabase/windows/requests/r3.fxml")), // PopularMedicament
     r4(new Request(
             "4. Получить какой объем указанных веществ использован за указанный период.",
-            "/ru/nsu/pharmacydatabase/windows/requests/r4.fxml")),
+            "/ru/nsu/pharmacydatabase/windows/requests/r4.fxml")), // SoldMedicinesController
     r5(new Request(
             "5. Получить перечень и общее число покупателей, заказывавших определенное\n" +
             "лекарство или определенные типы лекарств за данный период",
