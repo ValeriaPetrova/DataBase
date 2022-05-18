@@ -1,0 +1,3 @@
+ru.nsu.pharmacydatabase.controllers.filter.OrderFilterController#instance-init#
+javafx.collections.FXCollections#observableArrayList()Ljavafx/collections/ObservableList;
+ru.nsu.pharmacydatabase.Main#getConnection()Lru/nsu/pharmacydatabase/utils/Connection;

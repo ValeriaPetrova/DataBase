@@ -1,0 +1,2 @@
+ru.nsu.pharmacydatabase.controllers.select.PopularMedicament#listButtonTapped()V
+javafx.scene.control.ChoiceBox#getValue()Ljava/lang/Object;

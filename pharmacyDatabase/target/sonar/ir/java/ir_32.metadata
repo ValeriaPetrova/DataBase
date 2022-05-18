@@ -1,0 +1,5 @@
+ru.nsu.pharmacydatabase.controllers.filter.Filters#getFilterByName(Ljava/lang/String;)Lru/nsu/pharmacydatabase/controllers/filter/Filters;
+java.lang.String#equals(Ljava/lang/Object;)Z
+java.lang.IllegalArgumentException#<init>(Ljava/lang/String;)V
+ru.nsu.pharmacydatabase.controllers.filter.Filters#getName()Ljava/lang/String;
+java.lang.IllegalArgumentException#instance-init#

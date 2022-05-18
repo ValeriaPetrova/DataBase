@@ -23,6 +23,10 @@ public enum Tables {
     order(new Table(
             "ORDER_",
             "/ru/nsu/pharmacydatabase/windows/insert/order.fxml"
+    )),
+    prescription(new Table(
+            "PRESCRIPTION",
+            "/ru/nsu/pharmacydatabase/windows/insert/prescription.fxml"
     ));
 
     private Table table;

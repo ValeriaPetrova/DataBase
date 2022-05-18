@@ -1,0 +1,2 @@
+ru.nsu.pharmacydatabase.controllers.select.TableController#initialize(Ljava/net/URL;Ljava/util/ResourceBundle;)V
+javafx.scene.control.TableView#setItems(Ljavafx/collections/ObservableList;)V

@@ -1,0 +1,3 @@
+ru.nsu.pharmacydatabase.controllers.base.EntranceController#isNotEmpty()Z
+java.lang.String#length()I
+javafx.scene.control.TextInputControl#getText()Ljava/lang/String;

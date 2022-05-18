@@ -1,0 +1,21 @@
+
+Eru.nsu.pharmacydatabase.requests.Requests#getName()Ljava/lang/String;c
+YD:/database/pharmacyDatabase/src/main/java/ru/nsu/pharmacydatabase/requests/Requests.java@ @("1*Ì
+1c
+YD:/database/pharmacyDatabase/src/main/java/ru/nsu/pharmacydatabase/requests/Requests.javaA A(Ú
+×
+c
+YD:/database/pharmacyDatabase/src/main/java/ru/nsu/pharmacydatabase/requests/Requests.javaA A(.
+%0(ru.nsu.pharmacydatabase.requests.Request"__id*:*8+
+)ru.nsu.pharmacydatabase.requests.Requests"	
+requestƒ€
+c
+YD:/database/pharmacyDatabase/src/main/java/ru/nsu/pharmacydatabase/requests/Requests.javaA A( 
+%1java.lang.String"Dru.nsu.pharmacydatabase.requests.Request#getName()Ljava/lang/String;*0
+.
+%0(ru.nsu.pharmacydatabase.requests.Request2	getName()"
+c
+YD:/database/pharmacyDatabase/src/main/java/ru/nsu/pharmacydatabase/requests/Requests.javaA A(!
+
+%1java.lang.StringB-+
+)ru.nsu.pharmacydatabase.requests.Requests

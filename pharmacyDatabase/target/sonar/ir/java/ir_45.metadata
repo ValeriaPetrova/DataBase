@@ -1,0 +1,4 @@
+ru.nsu.pharmacydatabase.utils.DBInit#<init>(Lru/nsu/pharmacydatabase/utils/Connection;)V
+java.util.LinkedList#<init>()V
+java.util.LinkedList#instance-init#
+java.util.Arrays#asList([Ljava/lang/Object;)Ljava/util/List;

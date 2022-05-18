@@ -1,0 +1,2 @@
+ru.nsu.pharmacydatabase.controllers.select.PatientsWaitingToOrder#numButtonTapped()V
+javafx.scene.control.ChoiceBox#getValue()Ljava/lang/Object;

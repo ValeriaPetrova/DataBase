@@ -1,0 +1,4 @@
+ru.nsu.pharmacydatabase.controllers.insert.RequestInsertController#instance-init#
+javafx.collections.FXCollections#observableArrayList()Ljavafx/collections/ObservableList;
+javafx.beans.property.SimpleStringProperty#<init>(Ljava/lang/String;)V
+javafx.beans.property.SimpleStringProperty#instance-init#

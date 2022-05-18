@@ -1,0 +1,7 @@
+organization=nail-it
+projectKey=pharmacy
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.29017
+dashboardUrl=https://sonarcloud.io/dashboard?id=pharmacy
+ceTaskId=AYDYovcNuoE8pzodbrYp
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYDYovcNuoE8pzodbrYp

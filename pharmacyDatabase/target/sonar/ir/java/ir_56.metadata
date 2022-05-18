@@ -1,0 +1,3 @@
+ru.nsu.pharmacydatabase.utils.DBInit#updateMedicamentType(ILjava/lang/String;)V
+java.util.LinkedList#<init>()V
+java.util.LinkedList#instance-init#

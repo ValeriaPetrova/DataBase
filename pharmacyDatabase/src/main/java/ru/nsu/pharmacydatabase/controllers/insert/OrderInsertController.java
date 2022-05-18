@@ -55,10 +55,9 @@ public class OrderInsertController implements InsertController, Initializable {
         isReadyField.setItems(itemsIsReady);
         isReceivedField.setItems(itemsIsReceive);
         try {
-            ResultSet setMedicament = connection.executeQueryAndGetResult("select * from medicament");
+            ResultSet setMedicament = connection.executeQueryAndGetResult("select distinct title from medicament");
             Medicament = new HashMap<>();
             itemsMedicament.clear();
-            itemsMedicament.add("all");
 
             itemsIsReady.clear();
             itemsIsReady.add("YES");
@@ -68,12 +67,13 @@ public class OrderInsertController implements InsertController, Initializable {
             itemsIsReceive.add("NO");
 
             Medicament.put("all", 0);
+            int id = 1;
             if (setMedicament != null) {
                 while (setMedicament.next()) {
-                    String name = setMedicament.getString(2);
-                    Integer id = setMedicament.getInt(1);
+                    String name = setMedicament.getString(1);
                     Medicament.put(name, id);
                     itemsMedicament.add(name);
+                    id += 1;
                 }
             }
         } catch (java.sql.SQLException e) {

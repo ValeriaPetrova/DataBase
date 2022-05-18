@@ -1,0 +1,7 @@
+ru.nsu.pharmacydatabase.controllers.select.TableController#instance-init#
+javafx.collections.FXCollections#observableArrayList()Ljavafx/collections/ObservableList;
+java.util.LinkedList#<init>()V
+java.text.SimpleDateFormat#<init>(Ljava/lang/String;Ljava/util/Locale;)V
+java.text.SimpleDateFormat#instance-init#
+java.util.LinkedList#instance-init#
+ru.nsu.pharmacydatabase.Main#getConnection()Lru/nsu/pharmacydatabase/utils/Connection;

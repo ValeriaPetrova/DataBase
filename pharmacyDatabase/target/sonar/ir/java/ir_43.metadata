@@ -1,0 +1,4 @@
+ru.nsu.pharmacydatabase.controllers.select.ChoiceController#configureTableView()V
+ru.nsu.pharmacydatabase.requests.Requests#getName()Ljava/lang/String;
+java.lang.Enum#getDeclaringClass()Ljava/lang/Class;
+java.lang.Class#getEnumConstants()[Ljava/lang/Object;

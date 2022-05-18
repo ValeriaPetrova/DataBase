@@ -1,0 +1,8 @@
+ru.nsu.pharmacydatabase.controllers.insert.PatientInsertController#insertButtonTapped(Ljavafx/event/ActionEvent;)V
+ru.nsu.pharmacydatabase.utils.DBInit#getIdFrom(Ljava/lang/String;)I
+java.lang.String#length()I
+javafx.scene.Node#getScene()Ljavafx/scene/Scene;
+javafx.scene.control.TextInputControl#getText()Ljava/lang/String;
+java.lang.String#isEmpty()Z
+java.lang.String#charAt(I)C
+javafx.scene.Scene#getWindow()Ljavafx/stage/Window;

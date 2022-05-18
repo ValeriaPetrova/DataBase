@@ -1,0 +1,13 @@
+ru.nsu.pharmacydatabase.Main#start(Ljavafx/stage/Stage;)V
+java.lang.Object#getClass()Ljava/lang/Class;
+javafx.stage.Stage#show()V
+java.util.Locale#<init>(Ljava/lang/String;Ljava/lang/String;)V
+java.util.Locale#setDefault(Ljava/util/Locale;)V
+javafx.fxml.FXMLLoader#<init>()V
+java.lang.Class#getResourceAsStream(Ljava/lang/String;)Ljava/io/InputStream;
+javafx.fxml.FXMLLoader#instance-init#
+javafx.stage.Stage#setTitle(Ljava/lang/String;)V
+java.util.Locale#instance-init#
+javafx.scene.Scene#instance-init#
+javafx.scene.Scene#<init>(Ljavafx/scene/Parent;)V
+javafx.stage.Stage#setScene(Ljavafx/scene/Scene;)V

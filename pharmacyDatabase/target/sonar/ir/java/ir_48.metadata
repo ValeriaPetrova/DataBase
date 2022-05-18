@@ -1,0 +1,4 @@
+ru.nsu.pharmacydatabase.utils.DBInit#getIdFrom(Ljava/lang/String;)I
+ru.nsu.pharmacydatabase.utils.DBInit#getSubstring(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+java.lang.Integer#valueOf(Ljava/lang/String;)Ljava/lang/Integer;
+java.lang.Integer#intValue()I

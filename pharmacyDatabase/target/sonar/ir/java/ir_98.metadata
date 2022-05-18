@@ -1,0 +1,4 @@
+ru.nsu.pharmacydatabase.utils.AdminMain#getAll()V
+ru.nsu.pharmacydatabase.utils.AdminMain#showSelectWindow(Ljava/lang/String;)V
+javafx.scene.Node#getScene()Ljavafx/scene/Scene;
+javafx.scene.Scene#getWindow()Ljavafx/stage/Window;

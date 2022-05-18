@@ -1,0 +1,3 @@
+ru.nsu.pharmacydatabase.controllers.insert.PatientInsertController#initialize(Ljava/net/URL;Ljava/util/ResourceBundle;)V
+ru.nsu.pharmacydatabase.utils.DBInit#<init>(Lru/nsu/pharmacydatabase/utils/Connection;)V
+ru.nsu.pharmacydatabase.utils.DBInit#instance-init#

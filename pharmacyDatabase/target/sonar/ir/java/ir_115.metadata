@@ -1,0 +1,5 @@
+ru.nsu.pharmacydatabase.controllers.select.TableController#createPage(I)Ljavafx/scene/Node;
+javafx.scene.control.TableView#setItems(Ljavafx/collections/ObservableList;)V
+javafx.collections.FXCollections#observableList(Ljava/util/List;)Ljavafx/collections/ObservableList;
+java.lang.Math#max(II)I
+java.lang.Math#min(II)I

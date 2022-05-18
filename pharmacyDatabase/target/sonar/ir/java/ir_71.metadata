@@ -1,0 +1,6 @@
+ru.nsu.pharmacydatabase.utils.Connection#registerConnection()V
+ru.nsu.pharmacydatabase.utils.Connection#createConnection()V
+java.util.Properties#instance-init#
+java.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection;
+java.util.Properties#<init>()V
+java.lang.Class#forName(Ljava/lang/String;)Ljava/lang/Class;

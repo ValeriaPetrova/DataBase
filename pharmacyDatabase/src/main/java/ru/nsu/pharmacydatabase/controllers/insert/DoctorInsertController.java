@@ -51,7 +51,7 @@ public class DoctorInsertController implements InsertController, Initializable {
         surnameField.setText(surname);
     }
 
-    public void insertButtonTapped(ActionEvent actionEvent) {
+    public void insertButtonTapped() {
         if (firstnameField.getText().isEmpty() || surnameField.getText().isEmpty()) {
             showAlert("empty!", "Fill in required fields");
         } else {

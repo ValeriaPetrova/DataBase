@@ -515,24 +515,21 @@ public class DBInit {
         insertPrescription(2, "после еды, внутрь", "ангина", 1, 1);
         insertPrescription(1, "для наружнего применения", "ушиб", 2, 4);
         insertPrescription(1, "для наружнего применения", "ушиб", 2, 2);
-        insertPrescription(1, "во время еды, внутрь", "пищевое отравление", 1, 2);
         insertPrescription(3, "во время еды, внутрь", "аллергия", 3, 3);
-        insertPrescription(2, "во время еды, внутрь", "аллергия", 3, 7);
         insertPrescription(2, "для наружнего применения", "порез", 4, 5);
-        insertPrescription(1, "внутрь, после еды, 2 раза в день", "недостаток витаминов", 5, 6);
 
         insertMedicament("Назол", "внутрь", 36, "01-01-2025", 8, 1);
-        insertMedicament("Аевит", "внутрь", 24, "01-10-2024", 2, 8);
-        insertMedicament("Пантенол", "для наружнего применения", 72, "01-10-2026", 3, 7);
+        insertMedicament("Аевит", "внутрь", 24, "01-10-2024", 2, 5);
+        insertMedicament("Пантенол", "для наружнего применения", 72, "01-10-2026", 3, 5);
         insertMedicament("Граммидин", "внутрь", 72, "01-01-2024", 8, 1);
         insertMedicament("Найз", "для наружнего применения", 72, "01-01-2023", 6, 2);
         insertMedicament("Найз", "для наружнего применения", 72, "01-01-2023", 6, 3);
         insertMedicament("Фестал", "внутрь", 72, "31-01-2024", 4, 4);
-        insertMedicament("Бепантен", "для наружнего применения", 32, "01-01-2025", 3, 7);
+        insertMedicament("Бепантен", "для наружнего применения", 32, "01-01-2025", 3, 3);
         insertMedicament("Зодак", "для наружнего применения", 32, "01-01-2025", 1, 5);
-        insertMedicament("Супрастин", "внутрь", 72, "01-01-2024", 1, 6);
+        insertMedicament("Супрастин", "внутрь", 72, "01-01-2024", 1, 4);
         insertMedicament("Супрастин", "внутрь", 72, "01-01-2024", 1, 5);
-        insertMedicament("Зодак", "для наружнего применения", 32, "01-01-2025", 1, 6);
+        insertMedicament("Зодак", "для наружнего применения", 32, "01-01-2025", 1, 2);
         insertMedicament("Кларитин", "для наружнего применения", 32, "01-01-2025", 1, 5);
 
         insertStorage(1, 10, 6, 711.0);
@@ -823,4 +820,13 @@ public class DBInit {
         System.out.println("UPDATE doctor");
     }
 
+    public void updatePrescription(int id, int count, String usage, String diagnosis, int doctorId, int patientId) {
+        String sql = "UPDATE prescription SET " +
+                "number_of_medicines = " + count + ", direction_for_use = '" + usage + "', diagnosis= '" + diagnosis + "', doctor_id =" + doctorId + ", patient_id =" + patientId +
+                " WHERE prescription_id = " + id;
+        List<String> doctor = new LinkedList<>();
+        doctor.add(sql);
+        connection.insert(doctor);
+        System.out.println("UPDATE doctor");
+    }
 }

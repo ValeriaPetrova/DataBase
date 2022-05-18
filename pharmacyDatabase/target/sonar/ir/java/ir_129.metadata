@@ -1,0 +1,6 @@
+ru.nsu.pharmacydatabase.controllers.insert.RequestInsertController#insertButtonTapped(Ljavafx/event/ActionEvent;)V
+ru.nsu.pharmacydatabase.utils.DBInit#getIdFrom(Ljava/lang/String;)I
+javafx.scene.control.ChoiceBox#getSelectionModel()Ljavafx/scene/control/SingleSelectionModel;
+javafx.scene.Node#getScene()Ljavafx/scene/Scene;
+javafx.scene.Scene#getWindow()Ljavafx/stage/Window;
+javafx.scene.control.ChoiceBox#getValue()Ljava/lang/Object;

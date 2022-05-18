@@ -1,0 +1,4 @@
+ru.nsu.pharmacydatabase.controllers.select.ChoiceController#initialize(Ljava/net/URL;Ljava/util/ResourceBundle;)V
+ru.nsu.pharmacydatabase.controllers.select.ChoiceController#configureTableView()V
+javafx.scene.Node#setOnMouseClicked(Ljavafx/event/EventHandler;)V
+javafx.scene.control.ListView#setItems(Ljavafx/collections/ObservableList;)V

@@ -1,0 +1,11 @@
+ru.nsu.pharmacydatabase.controllers.select.TableController#filterButtonTapped()V
+java.lang.Object#getClass()Ljava/lang/Class;
+javafx.stage.Stage#show()V
+javafx.stage.Stage#instance-init#
+javafx.stage.Stage#<init>()V
+javafx.fxml.FXMLLoader#<init>()V
+java.lang.Class#getResourceAsStream(Ljava/lang/String;)Ljava/io/InputStream;
+javafx.fxml.FXMLLoader#instance-init#
+javafx.scene.Scene#instance-init#
+javafx.scene.Scene#<init>(Ljavafx/scene/Parent;)V
+javafx.stage.Stage#setScene(Ljavafx/scene/Scene;)V

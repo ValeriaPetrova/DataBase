@@ -1,0 +1,5 @@
+ru.nsu.pharmacydatabase.controllers.insert.OrderInsertController#setItem(Ljava/lang/String;)V
+ru.nsu.pharmacydatabase.utils.DBInit#getSubstring(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+javafx.scene.control.ChoiceBox#setValue(Ljava/lang/Object;)V
+javafx.scene.control.Labeled#setText(Ljava/lang/String;)V
+javafx.scene.control.TextInputControl#setText(Ljava/lang/String;)V

@@ -1,0 +1,3 @@
+ru.nsu.pharmacydatabase.controllers.select.TableController#updateButtonTapped()V
+javafx.scene.control.TableView#getSelectionModel()Ljavafx/scene/control/TableView$TableViewSelectionModel;
+javafx.scene.control.SelectionModel#getSelectedItem()Ljava/lang/Object;

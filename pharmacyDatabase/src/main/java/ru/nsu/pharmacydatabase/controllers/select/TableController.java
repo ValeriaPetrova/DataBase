@@ -73,7 +73,7 @@ public class TableController implements Initializable {
     }
 
     @FXML
-    private void insertButtonTapped() {
+    public void insertButtonTapped() {
         configureWindow(InsertMode.insert);
     }
 
@@ -87,24 +87,11 @@ public class TableController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableView.setItems(items);
-        pagination.setPageFactory(this::createPage);
     }
 
     private Node createPage(int pageIndex) {
         int fromIndex = pageIndex * rowsPerPage;
         int toIndex = Math.min(fromIndex + rowsPerPage, items.size());
-        if (fromIndex > toIndex) {
-            toIndex = fromIndex + rowsPerPage;
-            int iter = toIndex - items.size();
-            for (int i = 0; i < iter; i++) {
-                Map<String, Object> map = new HashMap<>();
-                for (int j = 1; j <= toIndex; j++) {
-                    String value = "";
-                    map.put("", value);
-                }
-                items.add(map);
-            }
-        }
         tableView.setItems(FXCollections.observableList(items.subList(fromIndex, toIndex)));
         return tableView;
     }
@@ -114,7 +101,7 @@ public class TableController implements Initializable {
         System.out.println("TABLE NAME: " + tableName);
     }
 
-    private void configureWindow(InsertMode mode) {
+    public void configureWindow(InsertMode mode) {
         String windowName = "";
         ChangeListener listener = (observable, oldValue, newValue) -> {
             try {
@@ -164,6 +151,13 @@ public class TableController implements Initializable {
                     "FROM order_ ord " +
                     "INNER JOIN medicament med " +
                     "ON med.medicament_id = ord.medicam_id";
+        } else if (tableName.equals("PRESCRIPTION")) {
+            operation = "select pr.prescription_id, pr.number_of_medicines, pr.direction_for_use, pr.diagnosis, doc.doctor_firstname || ' ' || doc.doctor_surname as doctor_name, pat.patient_firstname || ' ' || pat.patient_surname as patient_name " +
+                    "from prescription pr " +
+                    "inner join doctor doc " +
+                    "on doc.doctor_id = pr.doctor_id " +
+                    "inner join patient pat " +
+                    "on pat.patient_id = pr.patient_id";
         } else if (tableName.equals("REQUEST")) {
             operation = "SELECT request.request_id, provider.provider_name " +
                     "FROM request " +
@@ -204,6 +198,9 @@ public class TableController implements Initializable {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        if (tableName.equals("REQUEST") || tableName.equals("MEDICAMENT")) {
+            pagination.setPageFactory(this::createPage);
+        } 
     }
 
     @FXML
