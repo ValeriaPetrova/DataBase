@@ -3,15 +3,20 @@ package ru.nsu.pharmacydatabase.controllers.insert;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import ru.nsu.pharmacydatabase.utils.DBInit;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class RequestInsertController implements InsertController, Initializable {
@@ -23,7 +28,10 @@ public class RequestInsertController implements InsertController, Initializable 
     @FXML
     private Button insertButton;
     @FXML
-    private TextField providerIdField;
+    private ChoiceBox providerIdField;
+
+    private ObservableList<String> itemsProvider = FXCollections.<String>observableArrayList();
+    private Map<String, Integer> Provider;
 
     @Override
     public void setListener(ChangeListener listener) {
@@ -33,6 +41,22 @@ public class RequestInsertController implements InsertController, Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         dbInit = new DBInit(connection);
+        providerIdField.setItems(itemsProvider);
+        try {
+            ResultSet setProvider = connection.executeQueryAndGetResult("select * from provider");
+            Provider = new HashMap<>();
+            itemsProvider.clear();
+            if (setProvider != null) {
+                while (setProvider.next()) {
+                    String name = setProvider.getString(2);
+                    Integer id = setProvider.getInt(1);
+                    Provider.put(name, id);
+                    itemsProvider.add(name);
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setMode(InsertMode mode) {
@@ -42,15 +66,15 @@ public class RequestInsertController implements InsertController, Initializable 
     public void setItem(String item) {
         this.item = item;
         insertButton.setText("Изменить");
-        String providerId = DBInit.getSubstring(" PROVIDER_ID=", "PROVIDER_ID=", item);
-        providerIdField.setText(providerId);
+        String providerName = DBInit.getSubstring(" PROVIDER_NAME=", "PROVIDER_NAME=", item);
+        providerIdField.setValue(providerName);
     }
 
     public void insertButtonTapped(ActionEvent actionEvent) {
-        if (providerIdField.getText().isEmpty()) {
+        int providerId = Provider.get(providerIdField.getValue().toString());
+        if (providerIdField.getSelectionModel().isEmpty()) {
             showAlert("empty!", "Fill in required fields");
         } else {
-            int providerId = Integer.parseInt(providerIdField.getText());
             if (insertMode == InsertMode.insert) {
                 dbInit.insertRequest(providerId);
             } else {

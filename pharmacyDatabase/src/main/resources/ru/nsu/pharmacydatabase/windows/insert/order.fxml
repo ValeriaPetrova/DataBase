@@ -4,21 +4,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #024c68;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.insert.OrderInsertController">
+<AnchorPane prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #024c68;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.insert.OrderInsertController">
     <children>
-        <VBox alignment="CENTER" layoutX="75.0" layoutY="5.0" prefHeight="300.0" prefWidth="300.0">
+        <VBox alignment="CENTER" layoutX="133.0" layoutY="3.0" prefHeight="300.0" prefWidth="183.0">
             <Label text="Добавить заказ" textFill="WHITE">
                 <font>
                     <Font size="18.0" />
-                </font></Label>
-            <TextField fx:id="medicamentIdField" prefHeight="40.0" prefWidth="300.0" promptText="id лекаства">
-            </TextField>
-            <TextField fx:id="isReadyField" alignment="TOP_LEFT" prefHeight="40.0" prefWidth="300.0" promptText="Готов (YES/NO)">
-            </TextField>
-            <TextField fx:id="isReceivedField" alignment="TOP_LEFT" prefHeight="40.0" prefWidth="300.0" promptText="Получен (YES/NO)">
-            </TextField>
-            <TextField fx:id="startDateField" prefHeight="40.0" prefWidth="300.0" promptText="Дата регистрации" />
-            <Button fx:id="insertButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#insertButtonTapped" prefHeight="33.0" prefWidth="304.0" style="-fx-background-color: rgb(98,177,208);" text="Добавить" textFill="WHITE" />
+                </font>
+            </Label>
+             <Label text="Выберите лекарство" textAlignment="CENTER" textFill="WHITE" />
+             <ChoiceBox fx:id="choiceBoxMedicament" prefHeight="30.0" prefWidth="175.0" />
+             <Label text="Готов" textFill="WHITE" />
+             <ChoiceBox fx:id="isReadyField" prefHeight="30.0" prefWidth="178.0" />
+             <Label text="Получен" textFill="WHITE" />
+             <ChoiceBox fx:id="isReceivedField" prefHeight="30.0" prefWidth="182.0" />
+             <Label text="Дата" textFill="WHITE" />
+         <TextField fx:id="startDateField" prefHeight="35.0" prefWidth="183.0" promptText="ДД-ММ-ГГГГ" />
+            <Label />
+             <Button fx:id="insertButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#insertButtonTapped" prefHeight="33.0" prefWidth="304.0" style="-fx-background-color: rgb(98,177,208);" text="Добавить" textFill="WHITE" />
         </VBox>
     </children>
 </AnchorPane>

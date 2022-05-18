@@ -61,7 +61,7 @@ public class PopularMedicament implements SelectController, Initializable {
                     "where ROWNUM < 11";
             showResult(sql);
         } else {
-            String sql = "select title, type_name, c " +
+            String sql = "select title, type_name, c as count" +
                     "from (select med.title, med.type_id, count(*) as c " +
                     "from medicament med " +
                     "left outer join order_ ord " +

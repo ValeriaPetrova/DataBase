@@ -41,6 +41,18 @@ public class DBInit {
         dropSequences();
     }
 
+    public void createIndex(String tableName, String columnName, String indexName) {
+        PreparedStatement preparedStatement = null;
+        String sqlDropTable = "CREATE INDEX " + indexName +
+                " ON " + tableName + " (" + columnName + ") ";
+        try {
+            preparedStatement = connection.getConnection().prepareStatement(sqlDropTable);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ignored) {
+            System.err.println("can't create index ");
+        }
+    }
+
     public void init() throws SQLException {
         System.out.println("..creating table..");
         createTables();

@@ -3,15 +3,22 @@ package ru.nsu.pharmacydatabase.controllers.insert;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.nsu.pharmacydatabase.utils.DBInit;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class OrderInsertController implements InsertController, Initializable {
@@ -23,13 +30,18 @@ public class OrderInsertController implements InsertController, Initializable {
     @FXML
     private Button insertButton;
     @FXML
-    private TextField medicamentIdField;
+    private ChoiceBox choiceBoxMedicament;
     @FXML
-    private TextField isReadyField;
+    private ChoiceBox isReadyField;
     @FXML
-    private TextField isReceivedField;
+    private ChoiceBox isReceivedField;
     @FXML
     private TextField startDateField;
+
+    private ObservableList<String> itemsMedicament = FXCollections .<String>observableArrayList();
+    private ObservableList<String> itemsIsReady = FXCollections .<String>observableArrayList();
+    private ObservableList<String> itemsIsReceive = FXCollections .<String>observableArrayList();
+    private Map<String, Integer> Medicament;
 
     @Override
     public void setListener(ChangeListener listener) {
@@ -39,6 +51,34 @@ public class OrderInsertController implements InsertController, Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         dbInit = new DBInit(connection);
+        choiceBoxMedicament.setItems(itemsMedicament);
+        isReadyField.setItems(itemsIsReady);
+        isReceivedField.setItems(itemsIsReceive);
+        try {
+            ResultSet setMedicament = connection.executeQueryAndGetResult("select * from medicament");
+            Medicament = new HashMap<>();
+            itemsMedicament.clear();
+            itemsMedicament.add("all");
+
+            itemsIsReady.clear();
+            itemsIsReady.add("YES");
+            itemsIsReady.add("NO");
+            itemsIsReceive.clear();
+            itemsIsReceive.add("YES");
+            itemsIsReceive.add("NO");
+
+            Medicament.put("all", 0);
+            if (setMedicament != null) {
+                while (setMedicament.next()) {
+                    String name = setMedicament.getString(2);
+                    Integer id = setMedicament.getInt(1);
+                    Medicament.put(name, id);
+                    itemsMedicament.add(name);
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setMode(InsertMode mode) {
@@ -48,39 +88,37 @@ public class OrderInsertController implements InsertController, Initializable {
     public void setItem(String item) {
         this.item = item;
         insertButton.setText("Изменить");
-        String medicamentId = DBInit.getSubstring(" MEDICAM_ID=", "MEDICAM_ID=", item);
+        String medicament = DBInit.getSubstring(" TITLE=", "TITLE=", item);
         String isReady = DBInit.getSubstring(" IS_READY=", "IS_READY=", item);
         String isReceived = DBInit.getSubstring(" IS_RECEIVED=", "IS_RECEIVED=", item);
         String startDate = DBInit.getSubstring(" START_DATE=", "START_DATE=", item);
-        medicamentIdField.setText(medicamentId);
-        isReadyField.setText(isReady);
-        isReceivedField.setText(isReceived);
+        choiceBoxMedicament.setValue(medicament);
+        isReadyField.setValue(isReady);
+        isReceivedField.setValue(isReceived);
         startDateField.setText(startDate);
     }
 
     public void insertButtonTapped(ActionEvent actionEvent) {
-        String medicamentId = medicamentIdField.getText();
-        int medicamId = Integer.parseInt(medicamentId);
-        String isReady = isReadyField.getText();
-        String isReceived = isReceivedField.getText();
+        int medicamentId = Medicament.get(choiceBoxMedicament.getValue().toString());
+        String isReady = isReadyField.getValue().toString();
+        String isReceived = isReceivedField.getValue().toString();
         String startDate = startDateField.getText();
-        if (medicamentIdField.getText().isEmpty() || isReceivedField.getText().isEmpty() || isReadyField.getText().isEmpty() || startDateField.getText().isEmpty()) {
+        if (choiceBoxMedicament.getSelectionModel().isEmpty() || isReceivedField.getSelectionModel().isEmpty() ||
+                isReadyField.getSelectionModel().isEmpty() || startDateField.getText().isEmpty()) {
             showAlert("empty!", "Fill in required fields");
-        } else if (!isReady.equals("YES") && !isReady.equals("NO")) {
-            showAlert("Wrong format!", "Enter YES or NO on the line 'готов'");
-        } else if (!isReceived.equals("YES") && !isReceived.equals("NO")) {
-            showAlert("Wrong format!", "Enter YES or NO on the line 'получен'");
+        } if (isReady.equals("NO") && isReceived.equals("YES")) {
+            showAlert("Wrong data", "the order cannot be received if it is not yet ready");
         } else {
             if (insertMode == InsertMode.insert) {
-                dbInit.insertOrder(medicamId, isReady, isReceived, startDate);
+                dbInit.insertOrder(medicamentId, isReady, isReceived, startDate);
             } else {
                 int id = DBInit.getIdFrom(item);
-                dbInit.updateOrder(id, medicamId, isReady, isReceived, startDate);
+                dbInit.updateOrder(id, medicamentId, isReady, isReceived, startDate);
             }
             listener.changed(name, "", name);
             Stage stage = (Stage) insertButton.getScene().getWindow();
             stage.close();
         }
-
     }
+
 }

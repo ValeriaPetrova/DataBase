@@ -19,7 +19,7 @@ public enum Requests {
     r5(new Request(
             "5. Получить перечень и общее число покупателей, заказывавших определенное\n" +
             "лекарство или определенные типы лекарств за данный период",
-            "/ru/nsu/pharmacydatabase/windows/requests/r5.fxml")),
+            "/ru/nsu/pharmacydatabase/windows/requests/r5.fxml")), // BuyerListController
     r6(new Request(
             "6. Получить перечень и типы лекарств, достигших своей критической \n" +
             "нормы или закончившихся.",

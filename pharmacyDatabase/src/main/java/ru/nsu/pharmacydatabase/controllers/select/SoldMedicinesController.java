@@ -64,6 +64,7 @@ public class SoldMedicinesController implements SelectController, Initializable 
                     "on ord.medicam_id = med.medicament_id " +
                     "where ord.start_date > to_date('"+ startDate.getText() + "', 'DD-MM-YYYY') and ord.start_date < to_date('"+
                     endDate.getText() + "', 'DD-MM-YYYY') " +
+                    " having count(*) > 0 " +
                     " group by title " +
                     "order by volume desc ";
             showResult(sql);
@@ -74,6 +75,7 @@ public class SoldMedicinesController implements SelectController, Initializable 
                     "on ord.medicam_id = med.medicament_id " +
                     "where ord.start_date > to_date('"+ startDate.getText() + "', 'DD-MM-YYYY') and ord.start_date < to_date('"+
                     endDate.getText() + "', 'DD-MM-YYYY') and med.type_id = " + Medicament.get(choiceBox.getValue().toString()) +
+                    " having count(*) > 0 " +
                     " group by title " +
                     "order by volume desc ";
             showResult(sql);

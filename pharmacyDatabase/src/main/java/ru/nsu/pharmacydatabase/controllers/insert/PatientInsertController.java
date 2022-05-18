@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import ru.nsu.pharmacydatabase.utils.DBInit;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class PatientInsertController implements InsertController, Initializable {
@@ -66,15 +69,37 @@ public class PatientInsertController implements InsertController, Initializable 
         registrationDateField.setText(registrationDate);
     }
 
-    public void insertButtonTapped(ActionEvent actionEvent) {
+    boolean checkDate(String date1, String date2) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date dateFormat1 = format.parse(date1);
+        Date dateFormat2 = format.parse(date2);
+        int result = date1.compareTo(date2);
+        if (result == 0) {
+            System.out.println("Date1 is equal to Date2");
+            return false;
+        } else if (result > 0) {
+            System.out.println("Date1 is after Date2");
+            return false;
+        } else if (result < 0) {
+            System.out.println("Date1 is before Date2");
+            return true;
+        }
+        return false;
+    }
+
+    public void insertButtonTapped(ActionEvent actionEvent) throws ParseException {
         String firstname = firstnameField.getText();
         String surname = surnameField.getText();
         String birthdate = birthdateField.getText();
         String phoneNumber = phoneNumberField.getText();
         String address = addressField.getText();
         String registrationDate = registrationDateField.getText();
-        if (firstnameField.getText().isEmpty() || surnameField.getText().isEmpty() || birthdateField.getText().isEmpty() || phoneNumberField.getText().isEmpty() || addressField.getText().isEmpty() || registrationDateField.getText().isEmpty()) {
+        if (!checkDate(birthdate, registrationDate)) {
+            showAlert("wrong data", "date of registration cannot be greater than the date of birth");
+        } else if (firstnameField.getText().isEmpty() || surnameField.getText().isEmpty() || birthdateField.getText().isEmpty() || phoneNumberField.getText().isEmpty() || addressField.getText().isEmpty() || registrationDateField.getText().isEmpty()) {
             showAlert("empty!", "Fill in required fields");
+        } else if (!(phoneNumber.length() == 11 && phoneNumber.charAt(0) == '8')) {
+            showAlert("invalid format", "wrong phone number");
         } else {
             if (insertMode == InsertMode.insert) {
                 dbInit.insertPatient(firstname, surname, birthdate, phoneNumber, address, registrationDate);

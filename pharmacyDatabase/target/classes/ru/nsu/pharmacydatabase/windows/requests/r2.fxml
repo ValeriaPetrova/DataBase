@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #226078;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.select.PatientsWaitingToOrder">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #226078;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.select.PatientsWaitingToOrder">
     <Button fx:id="listButton" layoutX="91.0" layoutY="252.0" mnemonicParsing="false" onAction="#listButtonTapped" prefHeight="34.0" prefWidth="182.0" style="-fx-background-color: #62b1d0;" text="Получить список" textFill="WHITE">
       <font>
          <Font size="15.0" />

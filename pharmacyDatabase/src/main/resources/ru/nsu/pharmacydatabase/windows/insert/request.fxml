@@ -11,8 +11,11 @@
                 <font>
                     <Font size="18.0" />
                 </font></Label>
-            <TextField fx:id="providerIdField" prefHeight="40.0" prefWidth="300.0" promptText="id поставщика">
-            </TextField>
+         <Label />
+         <Label text="Выберите поставщика" textFill="WHITE" />
+         <ChoiceBox fx:id="providerIdField" prefHeight="38.0" prefWidth="300.0" />
+         <Label />
+
             <Button fx:id="insertButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#insertButtonTapped" prefHeight="33.0" prefWidth="304.0" style="-fx-background-color: rgb(98,177,208);" text="Добавить" textFill="WHITE" />
         </VBox>
     </children>
