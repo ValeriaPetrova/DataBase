@@ -41,24 +41,14 @@ public class DBInit {
         dropSequences();
     }
 
-    public void createIndex(String tableName, String columnName, String indexName) {
-        PreparedStatement preparedStatement = null;
-        String sqlDropTable = "CREATE INDEX " + indexName +
-                " ON " + tableName + " (" + columnName + ") ";
-        try {
-            preparedStatement = connection.getConnection().prepareStatement(sqlDropTable);
-            preparedStatement.executeUpdate();
-        } catch (SQLException ignored) {
-            System.err.println("can't create index ");
-        }
-    }
-
     public void init() throws SQLException {
         System.out.println("..creating table..");
         createTables();
+        createTriggers();
         System.out.println("..creating sequences..");
         createSequences();
         insertInfo();
+        createProcedure();
         System.out.println("..adding base information..");
         System.out.println("-----database successfully created-----");
     }
@@ -91,6 +81,73 @@ public class DBInit {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void createTriggers() throws SQLException {
+        String trigger1 = "CREATE OR REPLACE TRIGGER types " +
+                "before INSERT ON medicament_type " +
+                "FOR each row " +
+                "BEGIN  " +
+                "SELECT sq_medicament_type.NEXTVAL  " +
+                "INTO :new.medicament_type_id  FROM dual; " +
+                "END;";
+        connection.executeQuery(trigger1);
+        String trigger2 = "CREATE OR REPLACE TRIGGER delete_doctor " +
+                "BEFORE DELETE " +
+                "ON prescription " +
+                "FOR EACH ROW " +
+                "BEGIN " +
+                "DELETE from doctor " +
+                "WHERE prescription.doctor_id =:OLD.doctor_id; " +
+                "END";
+        connection.executeQuery(trigger2);
+    }
+
+    public void createProcedure() throws SQLException {
+        String sql = "create or replace procedure get_const_values( " +
+                "min_date out date, " +
+                "max_date out date, " +
+                "default_date out date " +
+                ") " +
+                "is " +
+                "begin " +
+                "min_date := to_date('01-01-1800', 'dd-mm-yyyy'); " +
+                "max_date := to_date('01-01-4021', 'dd-mm-yyyy'); " +
+                "default_date := sysdate; " +
+                "end;";
+        connection.executeQuery(sql);
+        String sql1 = "create or replace procedure get_min_time( " +
+                "min_date out date " +
+                ") " +
+                "is " +
+                "begin " +
+                " min_date := to_date('01-01-1800', 'dd-mm-yyyy'); " +
+                " end;";
+        connection.executeQuery(sql1);
+    }
+
+    public void createIndex(String tableName, String columnName, String indexName) {
+        PreparedStatement preparedStatement = null;
+        String sqlDropTable = "CREATE INDEX " + indexName +
+                " ON " + tableName + " (" + columnName + ") ";
+        try {
+            preparedStatement = connection.getConnection().prepareStatement(sqlDropTable);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ignored) {
+            System.err.println("can't create index ");
+        }
+    }
+
+    public void selectWithPagination(String tableName) {
+        String sql = "SELECT * " +
+                "  FROM ( SELECT tmp.*, rownum rn " +
+                "           FROM ( SELECT * " +
+                "                    FROM " + tableName +
+                "                   ORDER BY " + tableName + "_id DESC " +
+                "                ) tmp " +
+                "          WHERE rownum <= 16 " +
+                "       ) " +
+                " WHERE rn > 8";
     }
 
     public void dropTables() {
@@ -599,8 +656,8 @@ public class DBInit {
 
     public void  insertMedicamentType(String typeName) {
         PreparedStatement preparedStatement = null;
-        String sqlInsertMedicamentType = "INSERT INTO medicament_type " +
-                "VALUES (sq_medicament_type.NEXTVAL, '" + typeName + "')";
+        String sqlInsertMedicamentType = "INSERT INTO medicament_type(type_name) " +
+                "VALUES ('" + typeName + "')";
         try {
             preparedStatement = connection.getConnection().prepareStatement(sqlInsertMedicamentType);
             preparedStatement.executeUpdate();

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #226078;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.select.PopularMedicament">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #226078;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.select.PopularMedicament">
     <Button fx:id="listButton" layoutX="212.0" layoutY="265.0" mnemonicParsing="false" onAction="#listButtonTapped" prefHeight="34.0" prefWidth="182.0" style="-fx-background-color: #62b1d0;" text="Получить список" textFill="WHITE">
         <font>
             <Font size="15.0" />
@@ -14,10 +14,12 @@
         <font>
             <Font size="15.0" />
         </font></Label>
-    <Label layoutX="107.0" layoutY="26.0" text="Получить перечень десяти наиболее часто используемых &#10;медикаментов в целом и указанной категории медикаментов" textAlignment="CENTER" textFill="WHITE">
+    <Label layoutX="103.0" layoutY="44.0" text="Получить перечень наиболее часто используемых &#10;медикаментов в целом и указанной категории медикаментов" textAlignment="CENTER" textFill="WHITE">
         <font>
             <Font size="15.0" />
         </font>
     </Label>
+   <ChoiceBox fx:id="pageChoiceBox" layoutX="297.0" layoutY="218.0" prefHeight="26.0" prefWidth="48.0" />
+   <Label layoutX="256.0" layoutY="222.0" text="Топ" textFill="WHITE" />
 
 </AnchorPane>

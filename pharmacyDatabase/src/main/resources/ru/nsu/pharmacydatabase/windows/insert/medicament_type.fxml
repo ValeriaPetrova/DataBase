@@ -11,6 +11,7 @@
                 <font>
                     <Font size="18.0" />
                 </font></Label>
+         <TextField fx:id="typeIdField" prefHeight="40.0" prefWidth="300.0" promptText="type_id (не обязательно)" />
             <TextField fx:id="typeNameField" prefHeight="40.0" prefWidth="300.0" promptText="Название типа">
             </TextField>
 

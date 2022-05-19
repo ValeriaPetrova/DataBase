@@ -4,9 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
+import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -24,9 +27,12 @@ public class SelectTableController implements Initializable {
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);
     private final SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
     private ResultSet set;
+    private static final int rowsPerPage = 5;
 
     @FXML
     private TableView tableView;
+    @FXML
+    private Pagination pagination;
 
     public SelectTableController() {
     }
@@ -43,6 +49,15 @@ public class SelectTableController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tableView.setItems(items);
+        pagination.setPageFactory(this::createPage);
+    }
+
+    private Node createPage(Integer pageIndex) {
+        int fromIndex = pageIndex * rowsPerPage;
+        int toIndex = Math.min(fromIndex + rowsPerPage, items.size());
+        tableView.setItems(FXCollections.observableArrayList(items.subList(fromIndex, toIndex)));
+
+        return new BorderPane(tableView);
     }
 
     public void loadData() throws SQLException {

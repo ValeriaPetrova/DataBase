@@ -7,11 +7,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.nsu.pharmacydatabase.utils.DBInit;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MedicamentTypeInsertController implements InsertController, Initializable {
@@ -22,6 +24,8 @@ public class MedicamentTypeInsertController implements InsertController, Initial
     private String item;
     @FXML
     private Button insertButton;
+    @FXML
+    private TextField typeIdField;
     @FXML
     private TextField typeNameField;
 
@@ -46,17 +50,27 @@ public class MedicamentTypeInsertController implements InsertController, Initial
         typeNameField.setText(typeName);
     }
 
-    public void insertButtonTapped(ActionEvent actionEvent) {
+    public void upsertMedicamentType (int id, String name) throws SQLException {
+        String sql = "merge into medicament_type using dual on (medicament_type_id = " + id + ") " +
+                "when not matched then insert (medicament_type_id, type_name) values (" + id + ", '" + name + "') " +
+                "when matched then update set type_name = '"+ name + "' ";
+        connection.executeQuery(sql);
+    }
+
+
+    public void insertButtonTapped(ActionEvent actionEvent) throws SQLException {
         if (typeNameField.getText().isEmpty() ) {
             showAlert("empty!", "Fill in required fields");
         } else {
             String typeName = typeNameField.getText();
-            if (insertMode == InsertMode.insert) {
-                dbInit.insertMedicamentType(typeName);
+            int idType;
+            if (typeIdField.getText().isEmpty()) {
+                idType = -1;
             } else {
-                int id = DBInit.getIdFrom(item);
-                dbInit.updateMedicamentType(id, typeName);
+                String id = typeIdField.getText();
+                idType = Integer.parseInt(id);
             }
+            upsertMedicamentType(idType, typeName);
             listener.changed(name, "", name);
             Stage stage = (Stage) insertButton.getScene().getWindow();
             stage.close();

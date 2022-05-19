@@ -163,6 +163,31 @@ public class TableController implements Initializable {
                     "FROM request " +
                     "INNER JOIN provider " +
                     "ON provider.provider_id = request.provider_id";
+        } else if (tableName.equals("EXAM")) {
+            operation = "SELECT pat.patient_firstname || ' ' || pat.patient_surname as patient_name, doc.doctor_firstname || ' ' || doc.doctor_surname as doctor_name " +
+                    " from exam " +
+                    "inner join patient pat " +
+                    "on exam.pat_id = pat.patient_id " +
+                    "inner join doctor doc " +
+                    "on exam.doc_id = doc.doctor_id";
+        } else if (tableName.equals("MAKING_AN_ORDER")) {
+            operation = "select mao.order_id, pe.pharmacy_employee_firstname || ' ' || pe.pharmacy_employee_surname as pharmacy_employee, " +
+                    " pat.patient_firstname || ' ' || pat.patient_surname as patient_name " +
+                    " from making_an_order mao" +
+                    " inner join patient pat " +
+                    " on pat.patient_id = mao.patn_id " +
+                    " inner join pharmacy_employee pe" +
+                    " on pe.pharmacy_employee_id = mao.pharmacy_employee_id";
+        } else if (tableName.equals("MEDICAMENT")) {
+            operation = "select med.medicament_id, med.title, med.usage, med.production_time, med.shelf_life, mt.type_name " +
+                    "from medicament med " +
+                    "inner join medicament_type mt" +
+                    " on med.type_id = mt.medicament_type_id";
+        } else if (tableName.equals("STORAGE"))  {
+            operation = "select storage_id, med.title, critical_rate, actual_balance, price " +
+                    "from storage " +
+                    "inner join medicament med " +
+                    "on med.medicament_id = storage.medicament_id ";
         } else {
             operation = "SELECT * FROM " + tableName;
         }
@@ -200,7 +225,7 @@ public class TableController implements Initializable {
         }
         if (tableName.equals("REQUEST") || tableName.equals("MEDICAMENT")) {
             pagination.setPageFactory(this::createPage);
-        } 
+        }
     }
 
     @FXML

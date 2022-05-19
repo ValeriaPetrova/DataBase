@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import ru.nsu.pharmacydatabase.utils.DBInit;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,6 +54,21 @@ public class PatientInsertController implements InsertController, Initializable 
         insertMode = mode;
     }
 
+    public void executeProcedure() throws SQLException {
+        String sql = "declare " +
+                "    l_min_date date; " +
+                "    l_max_date date; " +
+                "    l_default_date date; " +
+                "begin " +
+                "    get_const_values(l_min_date, l_max_date, l_default_date); " +
+                "    dbms_output.put_line(l_min_date); " +
+                "    dbms_output.put_line(l_max_date); " +
+                "    dbms_output.put_line(l_default_date); " +
+                "end;";
+        ResultSet res = connection.executeQueryAndGetResult(sql);
+    }
+
+
     public void setItem(String item) {
         this.item = item;
         insertButton.setText("Изменить");
@@ -87,7 +104,8 @@ public class PatientInsertController implements InsertController, Initializable 
         return false;
     }
 
-    public void insertButtonTapped(ActionEvent actionEvent) throws ParseException {
+    public void insertButtonTapped(ActionEvent actionEvent) throws ParseException, SQLException {
+        executeProcedure();
         String firstname = firstnameField.getText();
         String surname = surnameField.getText();
         String birthdate = birthdateField.getText();

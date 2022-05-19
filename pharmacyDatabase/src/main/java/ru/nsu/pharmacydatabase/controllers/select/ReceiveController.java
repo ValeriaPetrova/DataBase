@@ -17,7 +17,8 @@ public class ReceiveController implements SelectController {
                 "on mao.patn_id = pat.patient_id " +
                 "inner join order_ " +
                 "on order_.order_id = mao.order_id " +
-                "where order_.is_ready = 'YES' and order_.is_received = 'NO' ";
+                "where order_.is_ready = 'YES' and order_.is_received = 'NO' " +
+                "order by patient_firstname, patient_surname";
         showResult(sql);
     }
 
