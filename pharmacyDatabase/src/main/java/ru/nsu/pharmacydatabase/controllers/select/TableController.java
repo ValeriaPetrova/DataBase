@@ -11,12 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ru.nsu.pharmacydatabase.*;
-import ru.nsu.pharmacydatabase.controllers.base.EntranceController;
-import ru.nsu.pharmacydatabase.controllers.filter.Filter;
-import ru.nsu.pharmacydatabase.controllers.filter.Filters;
 import ru.nsu.pharmacydatabase.controllers.insert.InsertController;
 import ru.nsu.pharmacydatabase.utils.Connection;
 import ru.nsu.pharmacydatabase.utils.DBInit;
@@ -34,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class TableController implements Initializable {
-    private String tableName;
+    public String tableName;
     private final Connection connection = Main.getConnection();
     private final LinkedList<TableColumn<Map, String>> columns = new LinkedList<>();
     private final ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
@@ -49,7 +45,8 @@ public class TableController implements Initializable {
     private Button filterButton;
     @FXML
     private Pagination pagination;
-
+    @FXML
+    private Button sortButton;
 
     public TableController() {
     }
@@ -71,6 +68,7 @@ public class TableController implements Initializable {
             throwables.printStackTrace();
         }
     }
+
 
     @FXML
     public void insertButtonTapped() {
@@ -232,6 +230,16 @@ public class TableController implements Initializable {
     public void filterButtonTapped () throws IOException {
         Stage stage = new Stage();
         InputStream inputStream = getClass().getResourceAsStream("/ru/nsu/pharmacydatabase/windows/filter/order_filter.fxml");
+        Parent root = new FXMLLoader().load(inputStream);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void sortButtonTapped() throws IOException {
+        Stage stage = new Stage();
+        InputStream inputStream = getClass().getResourceAsStream("/ru/nsu/pharmacydatabase/windows/sort/sort.fxml");
         Parent root = new FXMLLoader().load(inputStream);
         Scene scene = new Scene(root);
         stage.setScene(scene);

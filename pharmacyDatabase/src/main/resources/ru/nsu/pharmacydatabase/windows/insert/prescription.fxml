@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #024c68;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.insert.PrescriptionInsertController">
+<AnchorPane prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #024c68;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.pharmacydatabase.controllers.insert.PrescriptionInsertController">
     <children>
         <VBox alignment="CENTER" layoutX="75.0" layoutY="5.0" prefHeight="300.0" prefWidth="300.0">
             <Label text="Добавить рецепт" textFill="WHITE">
@@ -28,5 +28,6 @@
 
             <Button fx:id="insertButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#insertButtonTapped" prefHeight="33.0" prefWidth="304.0" style="-fx-background-color: rgb(98,177,208);" text="Добавить" textFill="WHITE" />
         </VBox>
-    </children>
+      <Button fx:id="newButton" layoutX="384.0" layoutY="185.0" mnemonicParsing="false" onAction="#newButtonTapped" style="-fx-background-color: rgb(98,177,208);" text="new" textFill="WHITE" />
+      </children>
 </AnchorPane>

@@ -69,6 +69,7 @@ public class SoldMedicinesController implements SelectController, Initializable 
                     "order by volume desc ";
             showResult(sql);
         } else {
+
             String sql = "select title, count(*) as volume " +
                     "from medicament med " +
                     "left outer join order_ ord " +

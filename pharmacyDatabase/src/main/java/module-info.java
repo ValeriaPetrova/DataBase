@@ -18,4 +18,6 @@ module ru.nsu.pharmacydatabase {
     opens ru.nsu.pharmacydatabase.controllers.select to javafx.fxml;
     exports ru.nsu.pharmacydatabase.controllers.filter;
     opens ru.nsu.pharmacydatabase.controllers.filter to javafx.fxml;
+    exports ru.nsu.pharmacydatabase.controllers.sort;
+    opens ru.nsu.pharmacydatabase.controllers.sort to javafx.fxml;
 }

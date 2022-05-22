@@ -7,15 +7,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ru.nsu.pharmacydatabase.controllers.select.TableController;
 import ru.nsu.pharmacydatabase.utils.DBInit;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -38,6 +45,8 @@ public class PrescriptionInsertController implements InsertController, Initializ
     private ChoiceBox doctorChoiceBox;
     @FXML
     private ChoiceBox patientChoiceBox;
+    @FXML
+    private Button newButton;
 
     private ObservableList<String> itemsDoctor = FXCollections.<String>observableArrayList();
     private ObservableList<String> itemsPatient = FXCollections .<String>observableArrayList();
@@ -59,8 +68,6 @@ public class PrescriptionInsertController implements InsertController, Initializ
             ResultSet setPatient = connection.executeQueryAndGetResult("select * from patient");
             Doctor = new HashMap<>();
             itemsDoctor.clear();
-            itemsDoctor.add("new");
-            Doctor.put("new", 0);
             Patient = new HashMap<>();
             itemsPatient.clear();
 
@@ -108,28 +115,10 @@ public class PrescriptionInsertController implements InsertController, Initializ
         patientChoiceBox.setValue(patientName);
     }
 
-    public void insertButtonTapped(ActionEvent actionEvent) {
+    public void insertButtonTapped(ActionEvent actionEvent) throws SQLException {
         if (countField.getText().isEmpty() || diagnosisField.getText().isEmpty() || patientChoiceBox.getSelectionModel().isEmpty()) {
             showAlert("empty!", "Fill in required fields");
-        } else if (doctorChoiceBox.getValue().equals("new")) {
-            String count = countField.getText();
-            int num = Integer.valueOf(count);
-            String dirForUse = directionForUseField.getText();
-            String diagnosis = diagnosisField.getText();
-            String doctor = doctorChoiceBox.getValue().toString();
-            int doctorId = Doctor.get(doctor);
-            String patient = patientChoiceBox.getValue().toString();
-            int patientId = Patient.get(patient);
 
-            if (insertMode == InsertMode.insert) {
-                dbInit.insertPrescription(num, dirForUse, diagnosis, doctorId, patientId);
-            } else {
-                int id = DBInit.getIdFrom(item);
-                dbInit.updatePrescription(id, num, dirForUse, diagnosis, doctorId, patientId);
-            }
-            listener.changed(name, "", name);
-            Stage stage1 = (Stage) insertButton.getScene().getWindow();
-            stage1.close();
         } else {
             String count = countField.getText();
             int num = Integer.valueOf(count);
@@ -146,10 +135,17 @@ public class PrescriptionInsertController implements InsertController, Initializ
                 int id = DBInit.getIdFrom(item);
                 dbInit.updatePrescription(id, num, dirForUse, diagnosis, doctorId, patientId);
             }
-            listener.changed(name, "", name);
+            //listener.changed(name, "", name);
             Stage stage = (Stage) insertButton.getScene().getWindow();
             stage.close();
         }
+    }
 
+
+    public void newButtonTapped(ActionEvent event) throws IOException {
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResourceAsStream("/ru/nsu/pharmacydatabase/windows/insert/new_doctor.fxml"));
+        primaryStage.setScene(new Scene(root));
     }
 }

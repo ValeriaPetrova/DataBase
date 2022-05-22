@@ -5,16 +5,21 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.nsu.pharmacydatabase.utils.DBInit;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DoctorInsertController implements InsertController, Initializable {
+public class NewDoctorInsertController implements Initializable, InsertController {
     private DBInit dbInit;
     private ChangeListener listener;
     private ObservableStringValue name = new SimpleStringProperty("");
@@ -51,7 +56,7 @@ public class DoctorInsertController implements InsertController, Initializable {
         surnameField.setText(surname);
     }
 
-    public void insertButtonTapped() {
+    public void insertButtonTapped(ActionEvent event) throws IOException {
         if (firstnameField.getText().isEmpty() || surnameField.getText().isEmpty()) {
             showAlert("empty!", "Fill in required fields");
         } else {
@@ -64,9 +69,12 @@ public class DoctorInsertController implements InsertController, Initializable {
                 int id = DBInit.getIdFrom(item);
                 dbInit.updateDoctor(id, firstname, surname);
             }
-            listener.changed(name, "", name);
-            Stage stage = (Stage) insertButton.getScene().getWindow();
-            stage.close();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = loader.load(getClass().getResourceAsStream("/ru/nsu/pharmacydatabase/windows/insert/prescription.fxml"));
+            primaryStage.setScene(new Scene(root));
+
+            //listener.changed(name, "", name);
         }
     }
 }

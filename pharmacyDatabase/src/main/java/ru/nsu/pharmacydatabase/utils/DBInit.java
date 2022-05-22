@@ -138,18 +138,6 @@ public class DBInit {
         }
     }
 
-    public void selectWithPagination(String tableName) {
-        String sql = "SELECT * " +
-                "  FROM ( SELECT tmp.*, rownum rn " +
-                "           FROM ( SELECT * " +
-                "                    FROM " + tableName +
-                "                   ORDER BY " + tableName + "_id DESC " +
-                "                ) tmp " +
-                "          WHERE rownum <= 16 " +
-                "       ) " +
-                " WHERE rn > 8";
-    }
-
     public void dropTables() {
         dropTable("making_an_order");
         dropTable("order_");
